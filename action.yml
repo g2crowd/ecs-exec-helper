@@ -1,0 +1,33 @@
+name: Comment on Pr with ecs exec
+author: Yulianna Tymchenko
+
+branding:
+  color: green
+  icon: airplay
+
+inputs:
+  org:
+    description: Name of the github organisation
+  repo:
+    description: Name of the github repo
+  pr:
+    description: Github pull request number
+  cluster:
+    description: Name of the commits author
+  task:
+    description: Name of the docker image to deploy
+
+
+outputs:
+  success:
+    description: Whether action was successful or not
+
+runs:
+  using: docker
+  image: Dockerfile
+  args:
+    - ${{ inputs.org }}
+    - ${{ inputs.repo }}
+    - ${{ inputs.pr }}
+    - ${{ inputs.cluster }}
+    - ${{ inputs.task }}
